@@ -21,6 +21,7 @@ public class Game {
     private static final int WIDTH = 800;
     private static final int HEIGHT = 600;
     private BlockRemover blockRemover;
+    private BallRemover ballRemover;
 
 
     /**
@@ -96,6 +97,7 @@ public class Game {
             block = new Block(new Rectangle(new Point(WIDTH - size, 0), size, HEIGHT), color);
             block.addToGame(this);
             block = new Block(new Rectangle(new Point(0, HEIGHT - size), WIDTH, size), color);
+            block.addHitListener(ballRemover);
             block.addToGame(this);
         }
     }
@@ -136,6 +138,8 @@ public class Game {
         paddle.addToGame(this);
         color = Color.blue;
         blockRemover = new BlockRemover(this, new Counter());
+        ballRemover = new BallRemover(this, new Counter());
+        ballRemover.addBall(2);
         initializeBlocks(6, 50, 20, 20);
         initializeBorder(20, Color.GRAY);
         initializeBalls(2, new Point(400, 440), 50);
@@ -154,13 +158,15 @@ public class Game {
             this.sprites.drawAllOn(d);
             gui.show(d);
             this.sprites.notifyAllTimePassed();
-
             long usedTime = System.currentTimeMillis() - startTime;
             long milliSecondLeftToSleep = millisecondsPerFrame - usedTime;
             if (milliSecondLeftToSleep > 0) {
                 sleeper.sleepFor(milliSecondLeftToSleep);
             }
-            if (blockRemover.remainedBalls() == 0) {
+            if (blockRemover.remainedBlocks() == 0) {
+                gui.close();
+            }
+            if (ballRemover.remainedBalls() == 0) {
                 gui.close();
             }
         }
