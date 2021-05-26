@@ -22,6 +22,7 @@ public class Game {
     private static final int HEIGHT = 600;
     private BlockRemover blockRemover;
     private BallRemover ballRemover;
+    private ScoreTrackingListener scoreTrackingListener;
 
 
     /**
@@ -90,11 +91,11 @@ public class Game {
      */
     public void initializeBorder(int size, Color color) {
         for (int i = 0; i < 4; i++) {
-            Block block = new Block(new Rectangle(new Point(0, 0), WIDTH, size), color);
+            Block block = new Block(new Rectangle(new Point(0, 15), WIDTH, size), color);
             block.addToGame(this);
-            block = new Block(new Rectangle(new Point(0, 0), size, HEIGHT), color);
+            block = new Block(new Rectangle(new Point(0, 15), size, HEIGHT), color);
             block.addToGame(this);
-            block = new Block(new Rectangle(new Point(WIDTH - size, 0), size, HEIGHT), color);
+            block = new Block(new Rectangle(new Point(WIDTH - size, 15), size, HEIGHT), color);
             block.addToGame(this);
             block = new Block(new Rectangle(new Point(0, HEIGHT - size), WIDTH, size), color);
             block.addHitListener(ballRemover);
@@ -122,6 +123,7 @@ public class Game {
                 block = new Block(new Rectangle(new Point(WIDTH - (shift + j * width),
                         shift + (height * (i + 1)) + height * 5), width, height), randomColor);
                 block.addHitListener(blockRemover);
+                block.addHitListener(scoreTrackingListener);
                 blockRemover.addedBlock(1);
                 block.addToGame(this);
             }
@@ -136,6 +138,10 @@ public class Game {
         Block paddleBlock = new Block(new Rectangle(new Point(400, 570), 50, 10), color);
         Paddle paddle = new Paddle(this.keyboard, paddleBlock);
         paddle.addToGame(this);
+        Counter counter =  new Counter();
+        scoreTrackingListener = new ScoreTrackingListener(this, counter);
+        ScoreIndicator scoreIndicator = new ScoreIndicator(this, counter);
+        scoreIndicator.addToGame(this);
         color = Color.blue;
         blockRemover = new BlockRemover(this, new Counter());
         ballRemover = new BallRemover(this, new Counter());
@@ -167,6 +173,7 @@ public class Game {
                 gui.close();
             }
             if (ballRemover.remainedBalls() == 0) {
+                scoreTrackingListener.addScore(100);
                 gui.close();
             }
         }
