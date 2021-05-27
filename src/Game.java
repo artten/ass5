@@ -169,10 +169,10 @@ public class Game {
                 sleeper.sleepFor(milliSecondLeftToSleep);
             }
             if (blockRemover.remainedBlocks() == 0) {
+                scoreTrackingListener.addScore(100);
                 gui.close();
             }
             if (ballRemover.remainedBalls() == 0) {
-                scoreTrackingListener.addScore(100);
                 gui.close();
             }
         }
