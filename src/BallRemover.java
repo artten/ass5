@@ -1,4 +1,10 @@
-public class BallRemover implements HitListener{
+/**
+ * @author 319339198
+ */
+/**
+ * ball Remover.
+ */
+public class BallRemover implements HitListener {
     private Game game;
     private Counter counter;
 
@@ -13,7 +19,7 @@ public class BallRemover implements HitListener{
     }
 
     /**
-     * increse the numbers of balls
+     * increse the numbers of balls.
      * @param num - the num ber to increase
      */
     public void addBall(int num) {
@@ -33,7 +39,7 @@ public class BallRemover implements HitListener{
     }
 
     /**
-     * get the number of remained balls
+     * get the number of remained balls.
      * @return int num of balls
      */
     public int remainedBalls() {

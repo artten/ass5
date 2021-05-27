@@ -6,8 +6,7 @@ import biuoop.DrawSurface;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 import biuoop.Sleeper;
-
-import java.awt.*;
+import java.awt.Color;
 import java.util.Random;
 
 /**
@@ -135,13 +134,13 @@ public class Game {
      */
     public void initialize() {
         Color color = Color.red;
-        Block paddleBlock = new Block(new Rectangle(new Point(400, 570), 50, 10), color);
+        Block paddleBlock = new Block(new Rectangle(new Point(400, 560), 50, 10), color);
         Paddle paddle = new Paddle(this.keyboard, paddleBlock);
         paddle.addToGame(this);
         Counter counter =  new Counter();
         scoreTrackingListener = new ScoreTrackingListener(this, counter);
         ScoreIndicator scoreIndicator = new ScoreIndicator(this, counter);
-        scoreIndicator.addToGame(this);
+        scoreIndicator.addToGame();
         color = Color.blue;
         blockRemover = new BlockRemover(this, new Counter());
         ballRemover = new BallRemover(this, new Counter());

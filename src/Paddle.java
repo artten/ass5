@@ -86,6 +86,7 @@ public class Paddle implements Sprite, Collidable {
 
     /**
      * change velocity after thr hit.
+     * @param hitter - the ball
      * @param collisionPoint - where was the it
      * @param currentVelocity - current velocity
      * @return - return velocity

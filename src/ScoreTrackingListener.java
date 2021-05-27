@@ -1,10 +1,18 @@
+/**
+ * @author 319339198
+ */
+
+/**
+ * score Listener.
+ */
 public class ScoreTrackingListener implements HitListener {
     private Counter currentScore;
     private Game game;
 
     /**
      * Constructor.
-     * @param scoreCounter
+     * @param game - the game
+     * @param scoreCounter - counter with the score
      */
     public ScoreTrackingListener(Game game, Counter scoreCounter) {
         this.currentScore = scoreCounter;
@@ -12,7 +20,7 @@ public class ScoreTrackingListener implements HitListener {
     }
 
     /**
-     * add 5 point for hit block
+     * add 5 point for hit block.
      * @param beingHit - the block that was hist
      * @param hitter - this ball that hit the block
      */
@@ -21,7 +29,7 @@ public class ScoreTrackingListener implements HitListener {
     }
 
     /**
-     * add points to the score
+     * add points to the score.
      * @param num - points to add
      */
     public void addScore(int num) {

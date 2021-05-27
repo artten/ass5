@@ -69,7 +69,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
 
     /**
-     * notify all listener that the ball was hit
+     * notify all listener that the ball was hit.
      * @param hitter - the ball that hit the ball
      */
     private void notifyHit(Ball hitter) {
@@ -134,6 +134,7 @@ public class Block implements Collidable, Sprite, HitNotifier {
 
     /**
      * Add hl as a listener to hit events.
+     * @return return list with all listeners
      */
     public List<HitListener> getHitListener() {
         return this.hitListeners;

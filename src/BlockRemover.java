@@ -1,7 +1,10 @@
-import java.util.Random;
+/**
+ * @author 319339198
+ */
 
-// a BlockRemover is in charge of removing blocks from the game, as well as keeping count
-// of the number of blocks that remain.
+/**
+ * Block Remover.
+ */
 public class BlockRemover implements HitListener {
     private Game game;
     private Counter remainingBlocks;
@@ -17,7 +20,8 @@ public class BlockRemover implements HitListener {
     }
 
     /**
-     * add number of blocks
+     * add number of blocks.
+     * @param num - the number to add
      */
     public void addedBlock(int num) {
         remainingBlocks.increase(num);
@@ -38,7 +42,7 @@ public class BlockRemover implements HitListener {
     }
 
     /**
-     * get the number of remained blocks
+     * get the number of remained blocks.
      * @return int num of blocks
      */
     public int remainedBlocks() {

@@ -1,13 +1,22 @@
+/**
+ * @author 319339198
+ */
+
 import biuoop.DrawSurface;
 
-import java.awt.*;
+import java.awt.Color;
 
-public class ScoreIndicator implements Sprite{
-    Game game;
-    Counter counter;
+/**
+ * display score.
+ */
+public class ScoreIndicator implements Sprite {
+    private Game game;
+    private Counter counter;
 
     /**
-     * Constructor
+     * Constructor.
+     * @param game - this game
+     * @param counter - this counter
      */
     public ScoreIndicator(Game game, Counter counter) {
         this.game = game;
@@ -15,12 +24,12 @@ public class ScoreIndicator implements Sprite{
     }
 
     /**
-     * draw the Score
+     * draw the Score.
      * @param d - surface
      */
     public void drawOn(DrawSurface d) {
         d.setColor(Color.BLACK);
-        d.drawText(d.getWidth()/2,14, Integer.toString(counter.getValue()), 15);
+        d.drawText(d.getWidth() / 2, 14, Integer.toString(counter.getValue()), 15);
     }
 
     /**
@@ -32,10 +41,9 @@ public class ScoreIndicator implements Sprite{
 
     /**
      * add the ball to the game.
-     * @param game - the game object
      */
-    public void addToGame(Game game) {
-        game.addSprite(this);
+    public void addToGame() {
+        this.game.addSprite(this);
     }
 
 }
